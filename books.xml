@@ -2,38 +2,39 @@
 
 <library>
 
-	<book id="01">
-    <title>Social Pyschology Eighth Edition</title>
-		<authors>
-        <author>Elliot Aronson</author>
-        <author>Timothy D. Wilson</author>
-        <author>Robin M Akert</author>
-    </authors>
-		<copyright>2013</published_year>
-		<publisher>Pearson</publisher>
-		<isbn>978-0-205-79662-5</isbn>
-    <pages>576</pages>
-	</book>
+<book>
+	<title>Social Pyschology Eighth Edition</title>
+	<authors>
+        	<author>Elliot Aronson</author>
+       	 	<author>Timothy D. Wilson</author>
+        	<author>Robin M Akert</author>
+    	</authors>
+	<copyright>2013</copyright>
+	<publisher>Pearson</publisher>
+	<genre>Non-fiction</genre>
+    	<pages>576</pages>
+</book>
   
-	<book id ="02">
-		<title>The Hidden Brain</title>
-		<authors>
-        <author>Shankar Vedantam</author>
-    </authors>
-		<copyright>2010</published_year>
-		<publisher>Spiegel & Grau</publisher>
-		<isbn>978-0-385-52522-</isbn>
-    <pages>270</pages>
-	</book>
+<book>
+	<title>The Hidden Brain</title>
+	<authors>
+        	<author>Shankar Vedantam</author>
+   	</authors>
+	<copyright>2010</copyright>
+	<publisher>Spiegel & Grau</publisher>
+	<genre>Non-fiction</genre>
+   	<pages>270</pages>
+</book>
   
-	<book id="03">
-		<title>The Stranger</title>
-		<authors>
-        <author>Albert Camus</author>
-    </authors>
-		<copyright>1988</published_year>
-		<publisher>Vintage International</publisher>
-		<isbn>978-0-205-79662-5</isbn>
-    <pages>123</pages>
-  
+<book>
+	<title>The Stranger</title>
+	<authors>
+        	<author>Albert Camus</author>
+   	</authors>
+	<copyright>1988</copyright>
+	<publisher>Vintage International</publisher>
+	<genre>Fiction</genre>
+    	<pages>123</pages>
+</book>
+	
 </library>
