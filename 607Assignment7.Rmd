@@ -114,5 +114,5 @@ booksJsonDf  %>%
 
 ```
 
-##Conclusion {.tabset .tabset-fade .tabset-pills}
+##Conclusion
 Although the three files had different structures and required different r commands, the three resulting dataframes are identical.
