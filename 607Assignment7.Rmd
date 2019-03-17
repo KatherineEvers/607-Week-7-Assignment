@@ -1,0 +1,118 @@
+---
+title: "607 Assignment Week 7"
+author: "Katherine Evers"
+date: "3/15/2019"
+output: html_document
+---
+
+##Project Overview
+This goal of this assignment is to understand and create HTML, XML, and JSON files. Data on three books were collected and stored in the three file types. These files were then imported into separate R dataframes.
+
+## Create files
+These are the books I chose for this assignment:
+
+  1. Social Pyschology Eighth Edition by Elliot Aronson, Timothy D. Wilson, & Robin M Akert
+  
+  2. The Hidden Brain by Shankar Vedantam
+  
+  3. The Stranger by Albert Camus
+  
+I created the following files including each book’s title, author(s), copyright, publisher, and genre:
+
+* [HTML file](https://raw.githubusercontent.com/KatherineEvers/607-Week-7-Assignment/master/books.html)
+
+* [XML file](https://raw.githubusercontent.com/KatherineEvers/607-Week-7-Assignment/master/books.xml)
+
+* [JSON file](http://raw.githubusercontent.com/KatherineEvers/607-Week-7-Assignment/master/books.json)
+
+
+## Load Libraries
+```{r results='hide', message=FALSE, warning=FALSE}
+library("RCurl") #To get URL data
+library("XML") #To read HTML and XML files
+library("jsonlite")  #To read JSON files
+library("kableExtra") # To create HTML tables
+library("dplyr") #To transform dataframes
+```
+
+# Import Files and Create Dataframes {.tabset .tabset-fade .tabset-pills}
+
+## HTML
+```{r}
+
+#Import file
+urlHTML <- getURL("https://raw.githubusercontent.com/KatherineEvers/607-Week-7-Assignment/master/books.html")
+
+#Read data in HTML format
+booksHTML <- htmlParse(urlHTML)
+
+#Convert to dataframe
+booksHtmlDf <- as.data.frame(readHTMLTable(booksHTML))
+
+#Rename columns
+names(booksHtmlDf) <- c("Book Title", "Author(s)", "Copyright", "Publisher", "Genre", "Pages")
+
+#Manipulate table and display
+booksHtmlDf  %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+
+##XML
+```{r}
+#Read in file
+urlXML <- getURL("https://raw.githubusercontent.com/KatherineEvers/607-Week-7-Assignment/master/books.xml")
+
+#Read data in XML format
+booksXML <- xmlParse(urlXML)
+
+#Convert to dataframe
+booksXmlDf <- xmlToDataFrame(booksXML)
+
+#Rename columns
+names(booksXmlDf) <- c("Book Title", "Author(s)", "Copyright", "Publisher", "Genre", "Pages")
+
+#Manipulate table and display
+booksXmlDf  %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  scroll_box(width = "100%", height = "200px")
+```
+
+##JSON
+
+```{r}
+#Read in file
+file <- 'http://raw.githubusercontent.com/KatherineEvers/607-Week-7-Assignment/master/books.json' 
+con = file(file, "r") 
+
+#Read lines from url
+booksJSON <- readLines(con, -1L) 
+
+#Remove EOF markers for proper import into dataframe
+booksJSON<- paste(booksJSON, collapse="")
+
+#Read data in JSON format
+booksJSON <- parse_json(booksJSON)
+
+#Convert list to dataframe
+booksJsonDf  <- bind_rows(booksJSON, .id = "column_label")
+
+#Create subset of dataframe
+booksJsonDf <- subset(booksJsonDf, select=c("Title", "Author(s)", "Copyright", "Publisher", "Genre", "Pages"))
+
+#Rename first column
+names(booksJsonDf)[1] <- "Book Title"
+
+#Manipulate table and display
+booksJsonDf  %>% 
+  kable() %>% 
+  kable_styling(bootstrap_options = c("striped", "hover", "condensed")) %>%
+  scroll_box(width = "100%", height = "200px")
+
+```
+
+##Conclusion {.tabset .tabset-fade .tabset-pills}
+Although the three files had different structures and required different r commands, the three resulting dataframes are identical.
